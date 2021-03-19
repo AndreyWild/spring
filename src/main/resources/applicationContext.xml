@@ -7,14 +7,35 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+<!--    Ссылка на properties файл-->
+    <context:property-placeholder location="classpath:myApp.properties"/>
 
+<!--    Создается объект класса Pet-->
     <bean id = "myPet"
           class = "spring_introduction.Cat">
     </bean>
 
+<!--    Создается объект класса Person-->
     <bean id = "myPerson"
           class="spring_introduction.Person">
-        <constructor-arg ref = "myPet"/>
+
+<!--        Зависимость через конструктор-->
+<!--        <constructor-arg ref = "myPet"/>-->
+
+<!--        Внедряется зависимость Person от Pet через setPet-->
+        <property name="pet" ref="myPet"/>
+
+<!--        При помощи setter присваиваем фамилию и имя-->
+<!--        <property name="surname" value="Wildman"/>-->
+<!--        name - имя метода, value - значение-->
+<!--        <property name="age" value="34"/>-->
+
+
+<!--        Через myApp.properties-->
+        <property name="surname" value="${person.surname}"/>
+        <property name="age" value="${person.age}"/>
+
+
 
     </bean>
 
