@@ -20,4 +20,12 @@ public class Dog implements Pet{
     public void setName(String name) {
         this.name = name;
     }
+
+    public void init(){
+        System.out.println("Class Dog: init method");
+    }
+
+    public void destroy(){
+        System.out.println("Class Dog: destroy method");
+    }
 }
