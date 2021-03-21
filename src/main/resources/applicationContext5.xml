@@ -9,8 +9,5 @@
 
     <!--    сканирует пакет на наличие аннотаций-->
     <context:component-scan base-package="spring_introduction"/>
-    <context:property-placeholder location="classpath:myApp.properties"/>
-
-
 
 </beans>
