@@ -1,4 +1,4 @@
-package aop.video2;
+package aop.video2Before;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

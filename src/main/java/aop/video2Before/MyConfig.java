@@ -1,4 +1,4 @@
-package aop.video2;
+package aop.video2Before;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
