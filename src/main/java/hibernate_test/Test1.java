@@ -18,13 +18,15 @@ public class Test1 {
             // Создаем сессию
             Session session = factory.getCurrentSession();
             // Создаем объект класса Employee
-            Employee emp = new Employee("Andrey", "Wild", "IT", 500);
+            Employee emp = new Employee("Aleksandr", "Smirnov", "Sales", 700);
             // Открываем транзакицю
             session.beginTransaction();
             // Сохраняем объект в тблице employees
             session.save(emp);
             // Закрываем сессию
             session.getTransaction().commit();
+
+            System.out.println("Done!");
         } finally {
             factory.close(); // обязательно закрыть factory
         }
