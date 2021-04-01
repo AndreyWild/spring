@@ -1,12 +1,14 @@
-package hibernate_test;
+package hibernate.hibernate_test;
 
-import hibernate_test.entity.Employee;
+import hibernate.hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
 
-public class Test1 {
+
+public class Test4 {
     public static void main(String[] args) {
         // Создаем фабрику по производству сессий
         SessionFactory factory = new Configuration()
@@ -17,15 +19,25 @@ public class Test1 {
         try {
             // Создаем сессию
             Session session = factory.getCurrentSession();
-            // Создаем объект класса Employee
-            Employee emp = new Employee("Aleksandr", "Smirnov", "Sales", 700);
-            // Открываем транзакицю
+            // Открываем 1-ю транзакицю
             session.beginTransaction();
-            // Сохраняем объект в тблице employees
-            session.save(emp);
-            // Закрываем сессию
-            session.getTransaction().commit();
 
+            // Получаем список всех работников
+//            List<Employee> emps = session.
+//                    createQuery("FROM Employee"). // создаем (Query) запрос на получение всех объектов
+//                    getResultList(); // получаем результат в виде List
+
+            // Получаем список всех работников по имени
+            List<Employee> empsName = session.
+                    createQuery("FROM Employee WHERE name = 'Aleksandr' AND salary > 700").
+                    getResultList();
+
+            for (Employee emp : empsName){
+                System.out.println(emp);
+            }
+
+            // Закрываем 1-ю сессию(транзакцию)
+            session.getTransaction().commit();
             System.out.println("Done!");
         } finally {
             factory.close(); // обязательно закрыть factory

@@ -1,4 +1,4 @@
-package one_to_one.entiti;
+package hibernate.one_to_one.entiti;
 
 import javax.persistence.*;
 

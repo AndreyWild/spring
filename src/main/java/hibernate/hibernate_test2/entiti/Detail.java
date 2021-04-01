@@ -1,4 +1,4 @@
-package hibernate_test2.entiti;
+package hibernate.hibernate_test2.entiti;
 
 import javax.persistence.*;
 

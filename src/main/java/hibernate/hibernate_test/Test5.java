@@ -1,11 +1,9 @@
-package hibernate_test;
+package hibernate.hibernate_test;
 
-import hibernate_test.entity.Employee;
+import hibernate.hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import java.util.List;
 
 /** Изменение полей объекта в таблице */
 public class Test5 {

@@ -1,4 +1,4 @@
-package hibernate_test2.entiti;
+package hibernate.loading_types.entiti;
 
 import javax.persistence.*;
 
@@ -18,36 +18,20 @@ public class Employee {
     @Column(name="surname")
     private String surname;
 
-    @Column(name="department")
-    private String department;
-
     @Column(name="salary")
     private int salary;
 
-    @OneToOne(cascade = CascadeType.ALL) // указываем отношения между классами
-    // (проводить те же операции с зависимыми Entity)
-    @JoinColumn(name = "details_id") // на основе какого поля строятся отношения
-    private Detail empDetail;
+    @ManyToOne(cascade =  CascadeType.ALL) // отношение к Department многие к одному, зависимость полная
+    @JoinColumn(name = "department_id") // зависимость через столбец  department_id
+    private Department department;
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, String department, int salary) {
+    public Employee(String name, String surname, int salary) {
         this.name = name;
         this.surname = surname;
-        this.department = department;
         this.salary = salary;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", department='" + department + '\'' +
-                ", salary=" + salary +
-                '}';
     }
 
     public int getId() {
@@ -74,14 +58,6 @@ public class Employee {
         this.surname = surname;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     public int getSalary() {
         return salary;
     }
@@ -90,11 +66,21 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Detail getEmpDetail() {
-        return empDetail;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setEmpDetail(Detail empDetail) {
-        this.empDetail = empDetail;
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", salary=" + salary +
+                '}';
     }
 }

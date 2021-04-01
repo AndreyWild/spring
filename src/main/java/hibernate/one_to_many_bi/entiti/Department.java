@@ -1,4 +1,4 @@
-package one_to_many_bi.entiti;
+package hibernate.one_to_many_bi.entiti;
 
 import javax.persistence.*;
 import java.util.ArrayList;

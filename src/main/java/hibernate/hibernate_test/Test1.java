@@ -1,12 +1,12 @@
-package hibernate_test;
+package hibernate.hibernate_test;
 
-import hibernate_test.entity.Employee;
+import hibernate.hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-/** Удаление объекта из таблицы */
-public class Test6 {
+
+public class Test1 {
     public static void main(String[] args) {
         // Создаем фабрику по производству сессий
         SessionFactory factory = new Configuration()
@@ -17,19 +17,15 @@ public class Test6 {
         try {
             // Создаем сессию
             Session session = factory.getCurrentSession();
-            // Открываем 1-ю транзакицю
+            // Создаем объект класса Employee
+            Employee emp = new Employee("Aleksandr", "Smirnov", "Sales", 700);
+            // Открываем транзакицю
             session.beginTransaction();
-
-
-             Employee emp = session.get(Employee.class, 10);
-             // Удаляем объект из таблицы
-             session.delete(emp);
-
-            // Удаляем объект с определенным параметром
-            // session.createQuery("DELETE Employee WHERE name = 'Aleksandr'").executeUpdate();
-
-            // Закрываем 1-ю сессию(транзакцию)
+            // Сохраняем объект в тблице employees
+            session.save(emp);
+            // Закрываем сессию
             session.getTransaction().commit();
+
             System.out.println("Done!");
         } finally {
             factory.close(); // обязательно закрыть factory

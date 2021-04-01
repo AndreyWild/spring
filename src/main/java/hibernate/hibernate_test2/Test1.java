@@ -1,9 +1,8 @@
-package one_to_one;
+package hibernate.hibernate_test2;
 
 
-
-import one_to_one.entiti.Detail;
-import one_to_one.entiti.Employee;
+import hibernate.hibernate_test2.entiti.Detail;
+import hibernate.hibernate_test2.entiti.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -21,36 +20,56 @@ public class Test1 {
         Session session = null; // объявляем сессию
 
         try {
-
-            /* Связь One-to-One */
-//            session = factory.getCurrentSession(); // создаем сессию
+//            // Создаем сессию
+//            Session session = factory.getCurrentSession();
 //
-//            Employee employee = new Employee("Nikolay", "Ivanov", "HR", 850);
-//            Detail detail = new Detail("New-York", "963258741", "niko@gmail.com");
+//            // Создаем объект Employee
+//            Employee employee = new Employee("Andrey", "Wild", "IT", 500);
+//            // Создаем объект Detail
+//            Detail detail = new Detail("Pinsk", "123456789", "andrei@mail.ru");
 //
-//            employee.setEmpDetail(detail); // добавляем работнику детали
-//            detail.setEmployee(employee); // добавляем к деталям работника
+//            // Присваиваем Employee его Detail
+//            employee.setEmpDetail(detail);
 //
+//
+//            // Открываем транзакицю
 //            session.beginTransaction();
 //
-//            session.save(detail);
 //
+//            // Сохряняю данные в таблицу
+//            session.save(employee);
+//
+//
+//            // Закрываем сессию
+//            session.getTransaction().commit();
+//
+//            System.out.println("Done!");
+
+
+//            Session session = factory.getCurrentSession();
+//            Employee employee = new Employee("Oleg", "Smirnov", "Sales", 700);
+//            Detail detail = new Detail("Moscow", "987654321", "smirnov@gmail.com");
+//            employee.setEmpDetail(detail);
+//            session.beginTransaction();
+//            session.save(employee);
 //            session.getTransaction().commit();
 //            System.out.println("Done!");
 
-            /* Получаем информацию о работнике из деталей */
 //            session = factory.getCurrentSession(); // создаем сессию
 //            session.beginTransaction();
-//            Detail detail = session.get(Detail.class, 4);
-//            System.out.println(detail.getEmployee());
+//
+//            Employee emp = session.get(Employee.class, 10); // получаем объект Employee с id = 1
+//            System.out.println(emp.getEmpDetail()); // выводим Detail полученного объекта
+//
 //            session.getTransaction().commit();
 //            System.out.println("Done!");
 
             session = factory.getCurrentSession(); // создаем сессию
             session.beginTransaction();
-            Detail detail = session.get(Detail.class, 1);
-            detail.getEmployee().setEmpDetail(null); // разрываю связь между работником и деталями
-            session.delete(detail); // удаляем детали
+
+            Employee emp = session.get(Employee.class, 2); // получаем объект Employee с id = 2
+            session.delete(emp); // Удалится объект Employee и привязанный к нему Detail
+
             session.getTransaction().commit();
             System.out.println("Done!");
 
