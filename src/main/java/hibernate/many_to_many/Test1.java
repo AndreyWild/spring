@@ -73,17 +73,81 @@ public class Test1 {
 
 //            ****************************************************************************
 
+//            session = factory.getCurrentSession();
+//            session.beginTransaction();
+//
+//            Child child = session.get(Child.class, 4);
+//
+//            System.out.println(child);
+//            System.out.println(child.getSections());
+//
+//            session.getTransaction().commit();
+//            System.out.println("Done!");
+
+//            ****************************************************************************
+
+            /* Удаляем сессию, т.к. стоит каскадная связь удалятся и дети */
+//            session = factory.getCurrentSession();
+//            session.beginTransaction();
+//
+//            Section section = session.get(Section.class, 1);
+//            session.delete(section);
+//
+//
+//            session.getTransaction().commit();
+//            System.out.println("Done!");
+
+//            ****************************************************************************
+
+            /* Добавление при отсутствии каскадной привязки*/
+//            session = factory.getCurrentSession();
+//
+//            Section section1 = new Section("Basketball");
+//            Child child1 = new Child("Andrey", 5);
+//            Child child2 = new Child("Masha", 7);
+//            Child child3 = new Child("Vasja", 6);
+//
+//            session.beginTransaction();
+//            session.save(section1);
+//
+//            section1.addChildToSection(child1);
+//            section1.addChildToSection(child2);
+//            section1.addChildToSection(child3);
+//
+//            session.getTransaction().commit();
+//            System.out.println("Done!");
+
+//            ****************************************************************************
+
+            /* Добавление при помощи persist */
+//            session = factory.getCurrentSession();
+//
+//            Section section1 = new Section("Dance");
+//            Child child1 = new Child("Olga", 12);
+//            Child child2 = new Child("Grisha", 8);
+//            Child child3 = new Child("Pavlik", 9);
+//            section1.addChildToSection(child1);
+//            section1.addChildToSection(child2);
+//            section1.addChildToSection(child3);
+//
+//            session.beginTransaction();
+//            session.persist(section1);
+//
+//            session.getTransaction().commit();
+//            System.out.println("Done!");
+
+//            ****************************************************************************
+
             session = factory.getCurrentSession();
             session.beginTransaction();
 
-            Child child = session.get(Child.class, 4);
-
-            System.out.println(child);
-            System.out.println(child.getSections());
+            Section section = session.get(Section.class, 1);
+            session.delete(section);
 
 
             session.getTransaction().commit();
             System.out.println("Done!");
+
         }
         finally {
             session.close();

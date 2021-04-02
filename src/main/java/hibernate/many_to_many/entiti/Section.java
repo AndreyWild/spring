@@ -16,7 +16,8 @@ public class Section {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(name = "child_section", // связь 2-х таблиц через таблицу child_section
             joinColumns = @JoinColumn(name = "section_id"), // ключь таблицы Section
             inverseJoinColumns = @JoinColumn(name = "child_id") // ключь таблицы Child

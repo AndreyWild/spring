@@ -20,7 +20,8 @@ public class Child {
     @Column(name = "age")
     private int age;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(name = "child_section", // связь 2-х таблиц через таблицу child_section
             joinColumns = @JoinColumn(name = "child_id"), // ключь таблицы Child
             inverseJoinColumns = @JoinColumn(name = "section_id") // ключь таблицы Section
